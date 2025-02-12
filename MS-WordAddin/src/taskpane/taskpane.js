@@ -15,44 +15,6 @@ const deepEqual = (x, y) => {
   return JSON.stringify(x) === JSON.stringify(y);
 };
 
-// const fetchPolicies = async (userEmail) => {
-//   const policyContainer = document.getElementById("policies_container");
-
-//   const response = await fetch(`http://localhost:3001/policies/${userEmail}`,{
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (!response.ok) {
-//     throw new Error(`Error fetching policies: ${response.statusText}`);
-//   }
-//   const data = await response.json();
-//   if(data){
-//     data.map((ele) => policies.push(ele));
-//   }
-//   console.log("Policies: ",policies);
-//   // if(policies.length == 1) {
-//   //   selectedPolicyId = policies[0].policyId;
-//   //   console.log("Selected Policy: ", selectedPolicyId);
-//   // }
-//   if(policies.length > 0) {
-//     const select = document.createElement("select");
-//     select.id = "policies";
-//     select.title = "policies";
-
-//     policies.forEach((policy) => {
-//     const option = document.createElement("option");
-//     option.value = `${policy.policyId}`;
-//     option.innerText = `${policy.policyName}`;
-//     select.appendChild(option);
-//     // console.log(policy);
-//     })
-//     policyContainer.appendChild(select);
-//   }
-// }
-
 const msalConfig = {
   auth: {
     clientId: "e50d7603-f35a-45a8-9311-79e783756701",
@@ -75,64 +37,6 @@ Office.onReady((info) => {
   }
 });
 
-// export async function create() {
-//   return Word.run(async (context) => {
-//     const policyOwner = document.getElementById("policyOwner");
-//     const policyName = document.getElementById("policyName");
-
-//     policyOwner.style.fontSize = "20px";
-//     policyName.style.color = "blue";
-
-//     // policy entry
-//     const policyEntry = `Name of the Owner: ${policyOwner.value} \\n Name of the Policy: ${policyName.value}`;
-
-//     // Insert a paragraph at the end of the document.
-//     const paragraph = context.document.body.insertParagraph(`${policyEntry}`, Word.InsertLocation.end);
-
-//     await context.sync();
-//   });
-// }
-
-// export async function syncF() {
-//   const syncMessage = document.getElementById("sync_message");
-//   const policyList = document.getElementById("policy-list");
-//   initializeMsal()
-//     .then(() => {
-//       return Word.run(async (context) => {
-//         try {
-//           const loginResponse = await msalInstance.loginPopup({
-//             scopes: ["Files.ReadWrite.All"],
-//           });
-
-//           const account = msalInstance.getAccount(loginResponse.account.username);
-//           msalInstance.setActiveAccount(account);
-
-//           const tokenResponse = await msalInstance.acquireTokenSilent({
-//             scopes: ["Files.ReadWrite.All"],
-//             account: account,
-//           });
-
-//           const accessToken = tokenResponse.accessToken;
-
-//           // Use the access token to access OneDrive
-//           console.log("Access token acquired:", accessToken);
-//           syncMessage.innerText = "Token acquired";
-//           syncMessage.style.color = "green";
-
-//           // Fetch all MS Word files from the user's OneDrive
-//           const wordFiles = await fetchCurrentWordFiles(accessToken);
-//           console.log("Word files:", wordFiles);
-//           saveDocumentCredentials(wordFiles);
-//           console.log("Sent the files to the Server");
-//         } catch (error) {
-//           console.error("Authentication error:", error);
-//         }
-//       });
-//     })
-//     .catch(() => {
-//       console.error("MSAL initialization failed");
-//     });
-// }
 
 async function fetchCurrentWordFiles(accessToken) {
   const endpoint = `https://graph.microsoft.com/v1.0/me/drive/recent`;
