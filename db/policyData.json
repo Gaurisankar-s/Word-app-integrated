@@ -1,0 +1,34 @@
+ [
+    {
+      "userId": "Test1",
+      "policyId": "Policy1",
+      "policyName": "Information Security Policy",
+      "policyCategory": "Security",
+      "policyEffectiveDate": "2024-03-21T00:00:00.000Z",
+      "policyOwners": [""], 
+      "requiresReview": true,
+      "approvalWorkflowId": "",
+      "attestationResponsiblePersons": [],
+      "attestationRequiresESignature": true,
+      "attestationFrequencyType": "monthly",
+      "attestationFrequencyInterval": 1,
+      "editLink": "",
+      "readLink": ""
+    },
+    {
+      "userId": "Test2",
+      "policyId": "Policy2",
+      "policyName": "Remote Work Policy",
+      "policyCategory": "HR",
+      "policyEffectiveDate": "2024-04-01T00:00:00.000Z",
+      "policyOwners": [], 
+      "requiresReview": false,
+      "approvalWorkflowId": "",
+      "attestationResponsiblePersons": [],
+      "attestationRequiresESignature": false,
+      "attestationFrequencyType": "yearly",
+      "attestationFrequencyInterval": 1,
+      "editLink": "",
+      "readLink": ""
+    }
+  ]

@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-box">
+    <h1>Login</h1>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email"
+          formControlName="email"
+          placeholder="Enter your email"
+        >
+        <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        >
+        <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <div *ngIf="showPasskey" class="passkey-container">
+      <div class="passkey-box">
+        <h3>Please copy your passkey</h3>
+        <p>This passkey is required for enabling MS Word VComply Policy builder extension</p>
+        <div class="passkey-value">
+          <input type="text" [value]="generatedPasskey" readonly #passkeyInput>
+          <button (click)="copyPasskey(passkeyInput)">Copy</button>
+        </div>
+        <p class="note">Page will redirect in 10 seconds...</p>
+      </div>
+    </div>
+  </div>
+</div> 

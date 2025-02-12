@@ -1,0 +1,66 @@
+<div class="policy-form-container">
+  <h1>Create a Policy</h1>
+  
+  <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <h3>User Information</h3>
+      <label>
+        User ID *
+        <input type="text" formControlName="userId" placeholder="Enter user ID">
+      </label>
+    </div>
+
+    <div class="form-section">
+      <h3>Policy Details</h3>
+      <label>
+        Policy ID *
+        <input type="text" formControlName="policyId" placeholder="Enter policy ID">
+      </label>
+      <label>
+        Policy Name *
+        <input type="text" formControlName="policyName" placeholder="Enter policy name">
+      </label>
+      
+      <label>
+        Policy Category
+        <input type="text" formControlName="policyCategory" placeholder="Enter policy category">
+      </label>
+      
+      <label>
+        Effective Date
+        <input type="date" formControlName="policyEffectiveDate">
+      </label>
+    </div>
+
+    <div class="form-section">
+      <h3>Review</h3>
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="requiresReview">
+        Requires Review
+      </label>
+    </div>
+
+    <div class="form-section">
+      <h3>Attestation</h3>
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="attestationRequiresESignature">
+        Requires E-Signature
+      </label>
+      
+      <label>
+        Attestation Frequency
+        <select formControlName="attestationFrequencyType">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="create-policy">Create Policy</button>
+      <!-- <button type="button" class="add-to-word" (click)="addToWord()">Add to Word</button> -->
+    </div>
+  </form>
+</div>

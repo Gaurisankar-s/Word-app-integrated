@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VComply Policy Builder</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
+    <link
+      rel="stylesheet"
+      href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"
+    />
+
+    <!-- Template styles -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <img src="../../assets/vcomply-logo.svg" alt="logo">
+      <h2 class="brand-title">Policy Ops</h2>
+
+      <p class="brand-description">
+        Use VComply's Policy Builder Add-in to draft, edit and save your policies using MS Word Online.
+      </p>
+
+      <button type="submit" id="linkAcc">
+        LINK YOUR ACCOUNT
+      </button>
+      <div id="policyContainer">
+
+      </div>
+
+      <p id="checkValidity">
+
+      </p>
+
+      <button type="submit" id="syncNow">
+        SYNC NOW
+      </button>
+      
+      <!-- Create a policy or update an existing policy -->
+      <!-- <div class="form">
+        <form action="">
+          <div class="form-fields">
+            <label for="policy_name">Policy Name</label>
+            <input type="text" id="policy_name" name="policy_name" required>
+          </div>
+          <div class="form-fields">
+            <label for="policy_category">Policy Category</label>
+            <input type="text" id="policy_category" name="policy_category" required>
+          </div>
+          <div class="form-fields">
+            <label for="policy_owner">Policy Owner</label>
+            <input type="text" id="policy_owner" name="policy_owner" required>
+          </div>
+          <button type="submit">Create Policy</button>
+        </form>
+      </div> -->
+
+    </div>
+  </body>
+</html>
+

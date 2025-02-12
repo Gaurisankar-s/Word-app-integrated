@@ -1,0 +1,41 @@
+<div class="user-form-container">
+  <h1>Create a User</h1>
+  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <label>
+        Name *
+        <input type="text" formControlName="name" placeholder="Enter full name">
+      </label>
+      
+      <label>
+        User ID *
+        <input type="text" formControlName="userId" placeholder="Enter user ID">
+      </label>
+      
+      <label>
+        Email *
+        <input type="email" formControlName="email" placeholder="Enter email address">
+      </label>
+      
+      <label>
+        Role
+        <input type="text" formControlName="role" placeholder="Enter role">
+      </label>
+      
+      <label>
+        Organization ID *
+        <input type="text" formControlName="organizationId" placeholder="Enter organization ID">
+      </label>
+      
+      <label>
+        Organization Name *
+        <input type="text" formControlName="organizationName" placeholder="Enter organization name">
+      </label>
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="create-user">Create User</button>
+    </div>
+  </form>
+</div>
