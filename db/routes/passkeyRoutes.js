@@ -30,22 +30,25 @@ router.post('/', async (req, res) => {
 router.post('/verify', async (req, res) => {
   try {
     const { email, passkey } = req.body;
+    console.log("Verify route - Received request:", { email, passkey });
 
-    // Check if both email and passkey are provided
     if (!email || !passkey) {
+      console.log("Missing email or passkey");
       return res.status(400).json({ message: 'Email and passkey are required' });
     }
 
     const passkeyDoc = await Passkey.findOne({ email, passkey });
+    console.log("Found passkey document:", passkeyDoc);
     
     if (!passkeyDoc) {
+      console.log("No matching passkey found");
       return res.status(401).json({ valid: false, message: 'Invalid or expired passkey' });
     }
     
     // Generate JWT
     const token = jwt.sign(
       { email: passkeyDoc.email },
-      crypto.randomBytes(32).toString('hex'), // Generate a random secret
+      crypto.randomBytes(32).toString('hex'),
       { expiresIn: '1h' }
     );
     
@@ -56,6 +59,7 @@ router.post('/verify', async (req, res) => {
 
     res.status(200).json({ valid: true, message: 'Passkey verified successfully', token: token });
   } catch (error) {
+    console.error("Verify route error:", error);
     res.status(500).json({ message: error.message });
   }
 });

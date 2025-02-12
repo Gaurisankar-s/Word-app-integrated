@@ -72,28 +72,27 @@ export class LoginComponent implements OnInit {
           if (exists) {
             const passkey = this.generatePasskey();
             
-            // Send passkey through WebSocket
-            this.wsService.sendPasskey(email, passkey).subscribe({
-              next: (response) => {
-                console.log('Passkey sent through WebSocket:', response);
-              },
-              error: (error) => {
-                console.error('Error sending passkey through WebSocket:', error);
-              }
-            });
-
+            // First store the passkey
             this.userService.storePasskey(email, passkey).subscribe({
               next: (response) => {
                 console.log('Passkey stored successfully:', response);
-                this.generatedPasskey = passkey;
-                this.showPasskey = true;
-                console.log('Login successful');
-                // Store email in localStorage
-                localStorage.setItem('userEmail', email);
-                // Delay navigation to allow user to copy passkey
-                setTimeout(() => {
-                  this.router.navigate(['/main']);
-                }, 10000); // 10 seconds delay
+                
+                // Only after successful storage, send through WebSocket
+                this.wsService.sendPasskey(email, passkey).subscribe({
+                  next: (response) => {
+                    console.log('Passkey sent through WebSocket:', response);
+                    this.generatedPasskey = passkey;
+                    this.showPasskey = true;
+                    console.log('Login successful');
+                    localStorage.setItem('userEmail', email);
+                    setTimeout(() => {
+                      this.router.navigate(['/main']);
+                    }, 10000);
+                  },
+                  error: (error) => {
+                    console.error('Error sending passkey through WebSocket:', error);
+                  }
+                });
               },
               error: (error) => {
                 console.error('Error storing passkey:', error);

@@ -343,11 +343,17 @@ function setupWebSocket(email) {
 async function verifyPasskey(receivedPasskey, receivedEmail) {
   const message = document.getElementById('checkValidity');
   console.log("Verifying passkey:", receivedPasskey);
+  console.log("Received Email:", receivedEmail);
+  
+  // Add a small delay to ensure passkey is stored
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
   const payload = {
     email: receivedEmail,
     passkey: receivedPasskey
   };
+
+  console.log("Sending verification payload:", payload);
 
   try {
     const response = await fetch("http://localhost:3001/api/passkeys/verify", {
@@ -359,7 +365,8 @@ async function verifyPasskey(receivedPasskey, receivedEmail) {
     });
 
     const data = await response.json();
-    console.log("Verification response:", data);
+    console.log("Raw verification response:", response);
+    console.log("Verification response data:", data);
     
     if (data.valid) {
       sessionKey = data.token;
@@ -367,10 +374,11 @@ async function verifyPasskey(receivedPasskey, receivedEmail) {
       message.innerText = "Verified Successfully";
       message.style.color = "green";
       fetchPolicies();
-      setInterval(validateUser, 3000);
+      setInterval(validateUser, 30000);
     } else {
       message.innerText = "Invalid User";
       message.style.color = "red";
+      console.error("Verification failed:", data.message);
     }
   } catch (error) {
     console.error("Error verifying passkey:", error);
